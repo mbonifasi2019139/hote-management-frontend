@@ -1,6 +1,32 @@
 .logo-navbar {
     max-height: 3rem;
     max-width: 3rem;
+    background-color: black;
+}
+
+.navbar-custom{
+    background-color: #b20d65;
+}
+
+.collapse ul.navbar-nav>li>a{
+    font-family: 'Oswald', sans-serif;
+    font-size: 25px;
+    color: white;
+}
+
+.collapse ul.navbar-nav>li>a:hover{
+    color:black;
+}
+
+.btn-custom{
+    background-color: white;
+    color: black;
+    margin: 0px 5px;
+}
+
+.btn-custom:hover{
+    background-color: black;
+    color: white;
 }
 
 nav {
