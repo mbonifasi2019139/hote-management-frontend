@@ -1,3 +1,15 @@
-body{
+body {
     background-color: #d5d5d5;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        flex-direction: column;
+        width: 100vw;
+    }
 }

@@ -4,27 +4,37 @@
     background-color: black;
 }
 
-.navbar-custom{
+.navbar-custom {
     background-color: #b20d65;
 }
 
-.collapse ul.navbar-nav>li>a{
+.collapse ul.navbar-nav>li>a,
+.logo a {
     font-family: 'Oswald', sans-serif;
-    font-size: 25px;
+    font-size: 1.3rem;
     color: white;
+    transition: all .4s ease-in-out;
 }
 
-.collapse ul.navbar-nav>li>a:hover{
-    color:black;
+.logo a {
+    font-size: 1.5rem;
+    align-items: center;
 }
 
-.btn-custom{
+.collapse ul.navbar-nav>li>a:hover {
+    background-color: white;
+    color: black;
+    border-radius: 10%;
+    padding: .3rem;
+}
+
+.btn-custom {
     background-color: white;
     color: black;
     margin: 0px 5px;
 }
 
-.btn-custom:hover{
+.btn-custom:hover {
     background-color: black;
     color: white;
 }
@@ -37,6 +47,31 @@ nav div {
     width: 100%;
 }
 
-.allwith {
-    width: 100%!important;
+
+/*SideBar*/
+
+.sidbar-admin {
+    width: 25rem;
+    height: 100vh;
+    color: white;
+}
+
+.sidbar-admin nav {
+    margin: 0 auto;
+    color: white;
+}
+
+.logo {
+    max-width: 8rem;
+    max-height: 8rem;
+}
+
+a {
+    color: white;
+    transition: all .5s ease-in-out;
+}
+
+a:hover {
+    cursor: pointer;
+    border-bottom: 1px solid white;
 }

@@ -13,6 +13,11 @@ import { RegisterComponent } from './components/register/register.component';
 
 
 import { RestUserService } from './services/restUser/rest-user.service';
+import { HomeHotelsComponent } from './components/home-hotels/home-hotels.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { UsersComponent } from './components/users/users.component';
+import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
+import { HomeAdminComponent } from './components/home-admin/home-admin.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,12 @@ import { RestUserService } from './services/restUser/rest-user.service';
     HomeComponent,
     NavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeHotelsComponent,
+    FooterComponent,
+    UsersComponent,
+    SidebarAdminComponent,
+    HomeAdminComponent
   ],
   imports: [
     BrowserModule,

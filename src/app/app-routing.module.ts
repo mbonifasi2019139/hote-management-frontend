@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeHotelsComponent } from './components/home-hotels/home-hotels.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UsersComponent } from './components/users/users.component';
+import { HomeAdminComponent } from './components/home-admin/home-admin.component';
 
 const routes: Routes = [
   {
@@ -16,6 +19,21 @@ const routes: Routes = [
   },
   {
     path: "register", component: RegisterComponent
+  },
+  {
+    path: "home", component: HomeComponent
+  },
+  {
+    path: "homeHotels", component: HomeHotelsComponent
+  },
+  {
+    path: "homeAdmin", component: HomeAdminComponent
+  },
+  {
+    path: "users", component: UsersComponent
+  },
+  {
+    path: "**", component: HomeAdminComponent
   }
 ];
 

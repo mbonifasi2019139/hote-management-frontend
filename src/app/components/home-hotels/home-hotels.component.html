@@ -1,0 +1,6 @@
+<div class="container p-4">
+    <h2 class="text-center"><strong>Usuarios registrados</strong></h2>
+    <ul class="list-group">
+        <li *ngFor="let user of users" class="list-group-item list-group-item-info">{{ user.name }} {{user.lastname}} </li>
+    </ul>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { RestUserService } from 'src/app/services/restUser/rest-user.service';
 
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   token:string;
   userLogged;
 
-  constructor(private restUser:RestUserService) {
+  constructor(private restUser:RestUserService, private router: Router) {
     this.user = new User("", "", "", "", "", "", "", [], [], []);
   }
 
@@ -35,6 +36,11 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('role', this.userLogged.role);
           localStorage.setItem('username', this.userLogged.username);
           alert('Usuario logeado exitosamente.');
+          if(this.userLogged.role == "ROLE_ADMIN"){
+            this.router.navigateByUrl('homeAdmin');
+          }else if(this.userLogged.role == "ROLE_CLIENT"){
+            this.router.navigateByUrl('home')
+          }
         }
       }
     },

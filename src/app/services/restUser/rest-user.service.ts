@@ -8,36 +8,65 @@ import { map } from 'rxjs/operators';
 })
 export class RestUserService {
   public uri:string;
+  public user;
+  public token;
+  public role;
+
   public httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   };
 
-private extractData(res: Response){
-  let body = res;
-  return body || [] || {};
-}
+  private extractData(res: Response){
+    let body = res;
+    return body || [] || {};
+  }
 
   constructor(private http:HttpClient) {
     this.uri = CONNECTION.URI;
-   }
+  }
 
-   testService(){
+  testService(){
     return 'Mensaje enviado desde el servicio.'
   }
 
-   register(user){
-     let params = JSON.stringify(user);
-     return this.http.post(this.uri+'register',params, this.httpOptions)
-     .pipe(map(this.extractData));
-   }
+  // Helper methods
+  getToken(){
+    let token = localStorage.getItem('token');
+    this.token = (token!= undefined || token != null) ? token : null;
+    
+    return token;
+  }
 
-   login(user, token){
-     user.gettoken = token;
-     let params = JSON.stringify(user);
-     return this.http.post(this.uri+'login',params,this.httpOptions)
-     .pipe(map(this.extractData));
-   }
+  getRole(){
+    let role = localStorage.getItem('role');
+    this.role = (role != undefined || role != null) ? role : null;
+
+    return role;
+  }
+
+  // Queries to the API Rest
+  register(user){
+    let params = JSON.stringify(user);
+    return this.http.post(this.uri+'register',params, this.httpOptions)
+    .pipe(map(this.extractData));
+  }
+
+  login(user, token){
+    user.gettoken = token;
+    let params = JSON.stringify(user);
+    return this.http.post(this.uri+'login',params,this.httpOptions)
+    .pipe(map(this.extractData));
+  }
+
+  getUsers(){
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Authorization": this.getToken()
+    });
+
+    return this.http.get(`${this.uri}getUsers/`, {headers}).pipe(map(this.extractData))
+  }
 
 }
