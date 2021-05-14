@@ -1,8 +1,9 @@
-<div class="sidebar" *ngIf="role === 'ROLE_ADMIN'">
-    <app-sidebar-admin></app-sidebar-admin>
-    <router-outlet></router-outlet>
-</div>
-<div *ngIf="role != 'ROLE_ADMIN'">
+<div *ngIf="role != 'ROLE_ADMIN'; then navbar; else sidebar"></div>
+<ng-template #navbar>
     <app-navbar></app-navbar>
     <router-outlet></router-outlet>
-</div>
+</ng-template>
+<ng-template class="sidebar" #sidebar>
+    <app-sidebar-admin></app-sidebar-admin>
+    <router-outlet></router-outlet>
+</ng-template>

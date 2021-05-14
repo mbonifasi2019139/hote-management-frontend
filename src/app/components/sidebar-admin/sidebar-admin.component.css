@@ -10,7 +10,8 @@ body {
 }
 
 .sidbar-admin {
-    width: 25rem;
+    width: 20vw;
+    max-height: 100vh;
     height: 100vh;
     color: white;
 }

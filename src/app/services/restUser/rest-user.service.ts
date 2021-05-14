@@ -11,6 +11,7 @@ export class RestUserService {
   public user;
   public token;
   public role;
+  public username;
 
   public httpOptions = {
     headers: new HttpHeaders({
@@ -46,6 +47,12 @@ export class RestUserService {
     return role;
   }
 
+  getUsername(){
+    let username = localStorage.getItem('username');
+    this.username = (username != undefined || username != null) ? username : null;
+    return username;
+  }
+
   // Queries to the API Rest
   register(user){
     let params = JSON.stringify(user);
@@ -67,6 +74,16 @@ export class RestUserService {
     });
 
     return this.http.get(`${this.uri}getUsers/`, {headers}).pipe(map(this.extractData))
+  }
+
+  saveUserByAdmin(user){
+    let params = JSON.stringify(user);
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Authorization": this.getToken()
+    });
+
+    return this.http.post(`${this.uri}createUserByAdmin`, params, {headers}).pipe(map(this.extractData));
   }
 
 }
