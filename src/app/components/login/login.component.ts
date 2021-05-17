@@ -26,11 +26,11 @@ export class LoginComponent implements OnInit {
         alert(res.message);
       }else{
         this.token = res.token;
+        this.userLogged = res.userFinded;
+        delete this.userLogged.password;
         if(this.token.length <= 0){
           alert('El token no se generó o capturó de manera correcta.')
-        }else{
-          this.userLogged = res.userFinded;
-          delete this.userLogged.password;
+        }else{          
           localStorage.setItem('token', this.token);
           localStorage.setItem('_id', this.userLogged._id);
           localStorage.setItem('role', this.userLogged.role);

@@ -10,6 +10,7 @@ import { User } from 'src/app/models/user';
 export class UsersComponent implements OnInit, DoCheck {
   user: User;
 
+
   users: [] = [];
   roles: Array<String> = ["ROLE_CLIENT", "ROLE_ADMIN", "ROLE_HOTEL"];
   usernameCurrentUser: String = null;
@@ -33,6 +34,7 @@ export class UsersComponent implements OnInit, DoCheck {
 
   ngDoCheck(){
     this.usernameCurrentUser = this.restUser.getUsername();
+    
   }
 
   setUserDetail(user:any){
@@ -47,7 +49,6 @@ export class UsersComponent implements OnInit, DoCheck {
       if(resp.userSaved){
         alert(resp.message);
         saveUserByAdminForm.reset();
-        console.log(resp);
         this.user = resp.userSaved;
         localStorage.setItem('user', JSON.stringify(this.user))
         // this.user = resp.userSaved;

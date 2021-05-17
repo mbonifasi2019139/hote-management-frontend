@@ -1,6 +1,97 @@
-<div class="container p-4">
-    <h2 class="text-center"><strong>Usuarios registrados</strong></h2>
-    <ul class="list-group">
-        <li *ngFor="let user of users" class="list-group-item list-group-item-info">{{ user.name }} {{user.lastname}} </li>
-    </ul>
+<div class="main p-4">
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid bg-success text-light rounded p-4">
+            <div class="container">
+                <h1 class="display-4 font-weight-bolder">Administrar Hoteles</h1>
+                <p class="lead">En esta seccion puedes administrar a todos los <span class="font-weight-bolder">Hoteles</span>.</p>
+                <button class="btn btn-lg btn-outline-light text-uppercase" data-toggle="modal" data-target="#createUser">Crear Hotel</button>
+            </div>
+        </div>
+        <div class="overflow-auto maxheight">
+            <div class="card users shadow-sm" *ngFor="let hotel of hotels">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h5 class="card-title font-weight-bolder">{{ hotel.name }}</h5>
+                    <p class="card-text"> {{ hotel.address }} </p>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Detalle Hotel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Detalle Usuario -->
+<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-pledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Información Detallada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <!-- 
+                <p>Nombre de Usuario: <strong>{{ username || " - "  }}</strong> </p>
+                <br>
+                <p>Nombre: <strong>{{ name || " - " }} </strong></p>
+                <br>
+                <p>Lastname: <strong>{{ lastname || " - " }}</strong> </p>
+                <br>
+                <p>Role: <strong>{{ role || " - " }}</strong> </p> -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Crear Usuaio -->
+<div class="modal fade" id="createUser" tabindex="-1" aria-pledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Crear un Hotel</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form #saveHotel="ngForm" (ngSubmit)="onSubmit(saveHotel)">
+                    <div class=" form-row ">
+                        <div class="form-group col-md-6 ">
+                            <label for="inputName ">Nombre del Hotel</label>
+                            <input [(ngModel)]="hotel.name" name="name" type="text " class="form-control " id="inputName " required>
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label for="inputAddress ">Direccion</label>
+                            <input [(ngModel)]="hotel.address" name="address" type="text" class="form-control" id="inputAddress " required>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="inputUserAdmin">Elige al Usuario Administrador</label>
+                        <select [(ngModel)]="hotel.user_admin_hotel" name="user_admin_hotel " id="inputUserAdmin " class="form-control " required>
+                            <option selected disabled>Elige un usuario...</option>
+                            <option *ngFor="let userM of usersManagements" [value]="userM._id">{{ userM.name }}</option> 
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <label for="inputCountry">Elige el Pais del Hotel</label>
+                        <select [(ngModel)]="hotel.country" name="country" id="inputCountry" class="form-control " required>
+                            <option selected disabled>Elige un pais...</option>
+                            <option *ngFor="let name of countries" [value]="name">{{ name }}</option> 
+                        </select>
+                    </div>
+                    <button type="submit " class="btn btn-primary btn-block " [disabled]="!saveHotel.form.valid ">Crear</button>
+                </form>
+
+
+            </div>
+            <div class="modal-footer ">
+                <button type="submit " class="btn btn-secondary " data-dismiss="modal ">Cancelar</button>
+            </div>
+        </div>
+    </div>
 </div>

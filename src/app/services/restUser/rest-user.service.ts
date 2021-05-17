@@ -86,4 +86,13 @@ export class RestUserService {
     return this.http.post(`${this.uri}createUserByAdmin`, params, {headers}).pipe(map(this.extractData));
   }
 
+  getManagements(){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    });
+
+    return this.http.get(`${this.uri}getManagements`, {headers}).pipe(map(this.extractData));
+  }
+
 }
