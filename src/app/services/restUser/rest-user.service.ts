@@ -95,4 +95,13 @@ export class RestUserService {
     return this.http.get(`${this.uri}getManagements`, {headers}).pipe(map(this.extractData));
   }
 
+  getUserByHotelAdmin(userId){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    });
+
+    return this.http.get(`${this.uri}getUserByHotelAdmin/${userId}`, {headers}).pipe(map(this.extractData));
+  }
+
 }

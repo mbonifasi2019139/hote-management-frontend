@@ -18,6 +18,8 @@ import { UsersComponent } from './components/users/users.component';
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
 import { HomeAdminComponent } from './components/home-admin/home-admin.component';
 import { HomeHotelsComponent } from './components/home-hotels/home-hotels.component';
+import { HoteladminReservationsComponent } from './components/hoteladmin-reservations/hoteladmin-reservations.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { HomeHotelsComponent } from './components/home-hotels/home-hotels.compon
     UsersComponent,
     SidebarAdminComponent,
     HomeAdminComponent,
-    HomeHotelsComponent
+    HomeHotelsComponent,
+    HoteladminReservationsComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,7 @@ import { HomeHotelsComponent } from './components/home-hotels/home-hotels.compon
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [RestUserService],
+  providers: [RestUserService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

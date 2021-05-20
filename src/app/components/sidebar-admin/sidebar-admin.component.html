@@ -5,12 +5,18 @@
     <nav id="list-example" class="list-group">
         <ul class="nav flex-column text-white">
             <li class="nav-item">
-                <a class="nav-link" routerLink="/users">Dashboard</a>
+                <a class="nav-link" routerLink="/homeAdmin">Dashboard</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="role == 'ROLE_HOTEL'">
+                <a class="nav-link" routerLink="/reservations">Reservaciones</a>
+            </li>
+            <li class="nav-item" *ngIf="role == 'ROLE_HOTEL'">
+                <a class="nav-link" routerLink="/users">Habitaciones</a>
+            </li>
+            <li class="nav-item" *ngIf="role == 'ROLE_ADMIN'">
                 <a class="nav-link" routerLink="/users">Usuarios</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="role == 'ROLE_ADMIN'">
                 <a class="nav-link" routerLink="/homeHotels">Hoteles</a>
             </li>
             <li class="nav-item">

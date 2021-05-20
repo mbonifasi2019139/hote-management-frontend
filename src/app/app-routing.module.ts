@@ -6,11 +6,12 @@ import { RegisterComponent } from './components/register/register.component';
 import { UsersComponent } from './components/users/users.component';
 import { HomeAdminComponent } from './components/home-admin/home-admin.component';
 import { HomeHotelsComponent } from './components/home-hotels/home-hotels.component';
+import { HoteladminReservationsComponent } from './components/hoteladmin-reservations/hoteladmin-reservations.component';
 
 const routes: Routes = [
-  {
+  /* {
     path: "", component: HomeComponent,
-  },
+  }, */
   {
     path: "", redirectTo: "home", pathMatch: "full"
   },
@@ -31,6 +32,9 @@ const routes: Routes = [
   },
   {
     path: "users", component: UsersComponent
+  },
+  {
+    path: "reservations", component: HoteladminReservationsComponent
   },
   {
     path: "**", component: HomeAdminComponent

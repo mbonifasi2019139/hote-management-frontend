@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
           alert('Usuario logeado exitosamente.');
           if(this.userLogged.role == "ROLE_ADMIN"){
             this.router.navigateByUrl('homeAdmin');
+          }else if(this.userLogged.role == "ROLE_HOTEL"){
+            this.router.navigateByUrl('homeAdmin');
           }else if(this.userLogged.role == "ROLE_CLIENT"){
             this.router.navigateByUrl('home')
           }
