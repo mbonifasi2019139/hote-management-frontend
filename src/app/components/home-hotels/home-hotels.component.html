@@ -2,10 +2,19 @@
     <div class="container">
         <div class="jumbotron jumbotron-fluid bg-success text-light rounded p-4">
             <div class="container">
-                <h1 class="display-4 font-weight-bolder">Administrar Hoteles</h1>
-                <p class="lead">En esta seccion puedes administrar a todos los <span class="font-weight-bolder">Hoteles</span>.</p>
-                <button class="btn btn-lg btn-outline-light text-uppercase" data-toggle="modal" data-target="#createUser">Crear Hotel</button>
+                <h1 *ngIf="role == 'ROLE_ADMIN'; else hotelsCliente" class="font-weight-bolder text-break">Administrar Hoteles</h1>
+
+                <ng-template #hotelsCliente>
+                    <h1 class="display-4 font-weight-bolder">Hoteles</h1>
+                </ng-template>
+                <p *ngIf="role == 'ROLE_ADMIN'" class="lead text-break">En esta seccion puedes administrar a todos los <span class="font-weight-bolder">Hoteles</span>.</p>
+                <button *ngIf="role == 'ROLE_ADMIN'" class="btn btn-lg btn-outline-light text-uppercase" data-toggle="modal" data-target="#createUser">Crear Hotel</button>
             </div>
+        </div>
+        <div class="input-group-lg p-4">
+            <form class="row">
+                <input class="form-control me-2 rounded-pill colp-3" type="search" placeholder="Busca un hotel . . ." aria-label="search">
+            </form>
         </div>
         <div class="overflow-auto maxheight">
             <div class="card users shadow-sm" *ngFor="let hotel of hotels">
@@ -13,7 +22,11 @@
                 <div class="card-body">
                     <h5 class="card-title font-weight-bolder">{{ hotel.name }}</h5>
                     <p class="card-text"> {{ hotel.address }} </p>
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Detalle Hotel</a>
+                    <a *ngIf="role == 'ROLE_ADMIN' || role == 'ROLE_HOTEL'; else buttonsHotel" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Detalle Hotel</a>
+                    <ng-template #buttonsHotel>
+                        <a class="btn btn-primary mr-1" data-toggle="modal" data-target="#staticBackdrop">Reservar</a>
+                        <a class="btn btn-info" data-toggle="modal" data-target="#staticBackdrop">Detalle Hotel</a>
+                    </ng-template>
                 </div>
             </div>
         </div>
@@ -31,7 +44,7 @@
           </button>
             </div>
             <div class="modal-body">
-                
+
                 <!-- <p>Nombre de Usuario: <strong>{{ username || " - "  }}</strong> </p>
                 <br>
                 <p>Nombre: <strong>{{ name || " - " }} </strong></p>

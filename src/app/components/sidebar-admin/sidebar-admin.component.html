@@ -1,6 +1,9 @@
 <div *ngIf="role != 'ROLE_CLIENT' && token != null" class="sidbar-admin bg-dark p-4 text-light text-center d-flex flex-column justify-content-between align-items-center">
 
-    <img class="logo rounded" src="../../../assets/img/logo_hoteles.jpeg" alt="img ...">
+    <div>
+        <img class="logo rounded" src="../../../assets/img/logo_hoteles.jpeg" alt="img ...">
+        <h2 class="font-weight-bolder text-monospace"> {{ username }} </h2>
+    </div>
 
     <nav id="list-example" class="list-group">
         <ul class="nav flex-column text-white">
@@ -30,7 +33,7 @@
             Cerrar sesion
             
         </button>
-        <button type="button" class="btn btn-outline-light ml-4">
+        <button type="button" class="btn btn-outline-light ml-4" routerLink="/myaccount">
             <i class="bi bi-sliders"></i>
         </button>
     </footer>

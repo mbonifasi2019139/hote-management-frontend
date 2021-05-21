@@ -9,9 +9,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
-        <div class="input-group-lg">
+        <!-- <div class="input-group-lg">
             <input class="form-control me-2 rounded-pill" type="search" placeholder="Japón, España, Perú..." aria-label="search">
-        </div>
+        </div> -->
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -24,18 +24,17 @@
                     <a *ngIf="role == 'ROLE_ADMIN'" class="nav-link" routerLink="/users">Usuarios</a>
                 </li>
                 <li class="nav-item">
-                    <a *ngIf="role == 'ROLE_ADMIN'" class="nav-link" routerLink="/home">Hoteles</a>
+                    <a *ngIf="role == 'ROLE_ADMIN' || role == 'ROLE_CLIENT'" class="nav-link" routerLink="/homeHotels">Hoteles</a>
                 </li>
                 <li class="nav-item">
-                    <a *ngIf="role == 'ROLE_ADMIN'" class="nav-link" routerLink="/home">Eventos</a>
+                    <a *ngIf="role == 'ROLE_ADMIN' || role == 'ROLE_CLIENT'" class="nav-link" routerLink="/home">Eventos</a>
                 </li>
                 <li *ngIf="token != null" class="nav-item dropleft">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropleft" role="button" data-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-gear-fill"></i>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropleft">
-                        <li><a class="dropdown-item" href="#">Hoteles</a></li>
-                        <li><a class="dropdown-item" href="#">Eventos</a></li>
+                        <li><a class="dropdown-item" routerLink="myaccount">Mi Cuenta</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

@@ -104,4 +104,38 @@ export class RestUserService {
     return this.http.get(`${this.uri}getUserByHotelAdmin/${userId}`, {headers}).pipe(map(this.extractData));
   }
 
+  getUser(){
+    let user = JSON.parse(localStorage.getItem('user'));
+    if(user != undefined || user != null){
+      this.user = user;
+    }else{
+      this.user = null;
+    }
+
+    return this.user;
+  }
+
+  updateUser(userToUpdate){
+    let params = JSON.stringify(userToUpdate);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    });
+
+    return this.http.put(this.uri+'updateUser/'+userToUpdate._id,params,{headers: headers})
+      .pipe(map(this.extractData));
+
+  }
+
+  deleteUser(idUser, password){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    });
+
+    return this.http.put(this.uri+'removeUser/'+ idUser, {password: password}, {headers: headers})
+      .pipe(map(this.extractData));
+  }
+
+
 }

@@ -21,6 +21,12 @@ import { HomeHotelsComponent } from './components/home-hotels/home-hotels.compon
 import { HoteladminReservationsComponent } from './components/hoteladmin-reservations/hoteladmin-reservations.component';
 import { DatePipe } from '@angular/common';
 
+// Graphics
+import { ChartsModule } from 'ng2-charts';
+import { BarGraphicComponent } from './components/bar-graphic/bar-graphic.component';
+import { PiechartGraphicComponent } from './components/piechart-graphic/piechart-graphic.component';
+import { MyAccountComponent } from './components/myaccount/myaccount.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,14 +39,18 @@ import { DatePipe } from '@angular/common';
     SidebarAdminComponent,
     HomeAdminComponent,
     HomeHotelsComponent,
-    HoteladminReservationsComponent
+    HoteladminReservationsComponent,
+    BarGraphicComponent,
+    PiechartGraphicComponent,
+    MyAccountComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [RestUserService,DatePipe],
   bootstrap: [AppComponent]

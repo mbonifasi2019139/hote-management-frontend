@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Country } from 'src/app/interfaces/country';
 import { Hotel } from 'src/app/models/hotel';
 import { User } from 'src/app/models/user';
@@ -10,13 +10,14 @@ import { RestUserService } from '../../services/restUser/rest-user.service';
   templateUrl: './home-hotels.component.html',
   styleUrls: ['./home-hotels.component.css']
 })
-export class HomeHotelsComponent implements OnInit {
+export class HomeHotelsComponent implements OnInit, DoCheck {
 
   countries: Array<Country> = [];
   user: User;
   hotel: Hotel;
   hotels: Array<Hotel> = [];
   usersManagements: [] = [];
+  role: String = null;
 
   constructor(private restHotel: RestHotelService, private restUser: RestUserService) { 
     this.user = new User("", "", "", "", "", "", "", [], [], []);
@@ -38,7 +39,11 @@ export class HomeHotelsComponent implements OnInit {
       resp.users.forEach(hotel => {
         this.hotels.push(hotel);
       });
-    })
+    });
+    this.role = this.restUser.getRole();
+  }
+  ngDoCheck(){
+    this.role = this.restUser.getRole();
   }
 
   onSubmit(formCHotel){

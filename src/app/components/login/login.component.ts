@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
+import { User } from '../../models/user';
 import { RestUserService } from 'src/app/services/restUser/rest-user.service';
 
 @Component({
@@ -30,11 +30,10 @@ export class LoginComponent implements OnInit {
         delete this.userLogged.password;
         if(this.token.length <= 0){
           alert('El token no se generó o capturó de manera correcta.')
-        }else{          
+        }else{
           localStorage.setItem('token', this.token);
-          localStorage.setItem('_id', this.userLogged._id);
+          localStorage.setItem('user', JSON.stringify(res.userFinded));
           localStorage.setItem('role', this.userLogged.role);
-          localStorage.setItem('username', this.userLogged.username);
           alert('Usuario logeado exitosamente.');
           if(this.userLogged.role == "ROLE_ADMIN"){
             this.router.navigateByUrl('homeAdmin');
@@ -49,5 +48,6 @@ export class LoginComponent implements OnInit {
     (error:any) => console.log(<any>error)
     )
   }
+
 
 }

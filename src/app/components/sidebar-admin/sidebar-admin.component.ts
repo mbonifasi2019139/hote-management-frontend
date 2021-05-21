@@ -11,17 +11,20 @@ export class SidebarAdminComponent implements OnInit, DoCheck {
 
   token: String = null;
   role: String = null;
+  username: String = null || "";
 
   constructor(private restUser: RestUserService, private router: Router) { }
 
   ngOnInit() {
     this.token = localStorage.getItem('token');
     this.role = localStorage.getItem('role');
+    this.username = localStorage.getItem('username')
   }
 
   ngDoCheck(){
     this.token = this.restUser.getToken();
     this.role = this.restUser.getRole();
+    this.username = localStorage.getItem('username')
   }
 
   logOut(){

@@ -21,6 +21,12 @@ body {
     color: white;
 }
 
+@media (max-width: 768px) {
+    .sidbar-admin {
+        width: 100vw;
+    }
+}
+
 .logo {
     max-width: 8rem;
     max-height: 8rem;
