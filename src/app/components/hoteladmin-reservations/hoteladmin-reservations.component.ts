@@ -32,9 +32,10 @@ export class HoteladminReservationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.restHotel.getHotelByHotelAdmin().subscribe((resp: any)=>{
-      this.hotel = resp.hotelFinded[0];
-    });
+     this.restHotel.getHotelByHotelAdmin().subscribe((resp: any)=>{
+      this.hotel = resp.hotel;
+      console.log(resp);
+     });
     this.restReservation.getReservations().subscribe((resp:any)=>{
       resp.reservations.forEach(element => {
         var roomId = element.room;

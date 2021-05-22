@@ -73,7 +73,7 @@ export class RestHotelService {
       "Authorization": this.getToken()
     });
 
-    return this.http.get(`${this.uri}getHotelByHotelAdmin`, {headers}).pipe(map(this.extractData));
+    return this.http.get(`${this.uri}getHotelBydAdminHotelID`, {headers}).pipe(map(this.extractData));
   }
 
 
