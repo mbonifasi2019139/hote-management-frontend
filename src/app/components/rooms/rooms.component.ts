@@ -16,6 +16,7 @@ export class RoomsComponent implements OnInit {
   hotel: Hotel;
   room: Room;
   rooms: Array<Room> = [];
+  confirmPassword;
 
   constructor(private restRoom: RestRoomService, private datepipe: DatePipe, private restHotel: RestHotelService, private router: Router) { 
     this.hotel = new Hotel("", "", "", "", null, "", "", [], []);
@@ -23,6 +24,7 @@ export class RoomsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.rooms = [];
     this.restHotel.getHotelByHotelAdmin().subscribe((resp: any)=>{
       this.hotel = resp.hotel[0];
     });
@@ -59,6 +61,18 @@ export class RoomsComponent implements OnInit {
 
   deleteInfo(){
     this.room = new Room("","",null,null,null);
+  }
+
+  removeRoom(){
+    this.restRoom.deleteRoom(this.room._id,this.confirmPassword).subscribe((resp:any)=>{
+      if(resp.ok == true){
+        alert(resp.message);
+        this.ngOnInit();
+      }else{
+        alert(resp.message);
+      }
+    },
+    error => alert(error.error.message))
   }
 
 }
