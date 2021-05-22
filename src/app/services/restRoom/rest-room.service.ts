@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Room } from 'src/app/models/room';
 import { CONNECTION } from '../global';
 
 @Injectable({
@@ -38,8 +39,36 @@ export class RestRoomService {
       'Content-Type': 'application/json',
       "Authorization": this.getToken()
     });
-    console.log(roomId);
 
     return this.http.get(`${this.uri}getRoomByAdminHotel/${roomId}`, {headers}).pipe(map(this.extractData));
+  }
+
+  getRooms(){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      "Authorization": this.getToken()
+    });
+
+    return this.http.get(`${this.uri}getRoomByAdminHotel`, {headers}).pipe(map(this.extractData));
+  }
+
+  getRoomsByHotelAdmin(){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      "Authorization": this.getToken()
+    });
+
+    return this.http.get(`${this.uri}getRoomsByHotelAdmin`, {headers}).pipe(map(this.extractData));
+  }
+
+  createRoom(room: Room,idH: string){
+    let params = JSON.stringify(room);
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      "Authorization": this.getToken()
+    });
+
+    return this.http.post(`${this.uri}createRoom/${idH}`,params , {headers}).pipe(map(this.extractData));
   }
 }

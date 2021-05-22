@@ -1,0 +1,64 @@
+import { DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Hotel } from 'src/app/models/hotel';
+import { Room } from 'src/app/models/room';
+import { RestHotelService } from 'src/app/services/restHotel/rest-hotel.service';
+import { RestRoomService } from 'src/app/services/restRoom/rest-room.service';
+
+@Component({
+  selector: 'app-rooms',
+  templateUrl: './rooms.component.html',
+  styleUrls: ['./rooms.component.css']
+})
+export class RoomsComponent implements OnInit {
+  
+  hotel: Hotel;
+  room: Room;
+  rooms: Array<Room> = [];
+
+  constructor(private restRoom: RestRoomService, private datepipe: DatePipe, private restHotel: RestHotelService, private router: Router) { 
+    this.hotel = new Hotel("", "", "", "", null, "", "", [], []);
+    this.room = new Room("","",null,null,null);
+  }
+
+  ngOnInit(): void {
+    this.restHotel.getHotelByHotelAdmin().subscribe((resp: any)=>{
+      this.hotel = resp.hotel[0];
+    });
+    this.restRoom.getRoomsByHotelAdmin().subscribe((resp:any)=>{
+      resp.rooms.forEach(element => {
+        this.restRoom.getRoom(element).subscribe((resp:any)=>{
+          this.rooms.push(resp.rooms);
+        })
+      });
+    })
+  }
+
+  showDateInFormat(date): Date{
+    date = this.datepipe.transform(date, "dd/MM/yyyy");
+    return date;
+  }
+
+  setRoom(room: Room){
+    this.room = room;
+  }
+
+  onSubmit(saveRoomByAdminForm){
+    this.restRoom.createRoom(this.room,this.hotel._id).subscribe( (resp:any) => {
+      if(resp.userSaved){
+        alert(resp.message);
+        saveRoomByAdminForm.reset();
+        this.room = resp.roomSaved;
+      }else {
+        alert(resp.message);
+      }
+    }, 
+    err => alert(err.error.message));
+  }
+
+  deleteInfo(){
+    this.room = new Room("","",null,null,null);
+  }
+
+}

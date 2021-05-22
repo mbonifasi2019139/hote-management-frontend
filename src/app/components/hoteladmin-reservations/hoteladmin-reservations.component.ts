@@ -28,13 +28,12 @@ export class HoteladminReservationsComponent implements OnInit {
     this.user = new User("","","","","","","",[],[],[]);
     this.reservation = new Reservation("","","","",null,null,null,null,[],[]);
     this.hotel = new Hotel("", "", "", "", null, "", "", [], []);
-    this.room = new Room("","",null,null);
+    this.room = new Room("","",null,null,null);
   }
 
   ngOnInit(): void {
      this.restHotel.getHotelByHotelAdmin().subscribe((resp: any)=>{
-      this.hotel = resp.hotel;
-      console.log(resp);
+      this.hotel = resp.hotel[0];
      });
     this.restReservation.getReservations().subscribe((resp:any)=>{
       resp.reservations.forEach(element => {

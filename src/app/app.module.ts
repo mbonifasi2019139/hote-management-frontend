@@ -26,6 +26,7 @@ import { ChartsModule } from 'ng2-charts';
 import { BarGraphicComponent } from './components/bar-graphic/bar-graphic.component';
 import { PiechartGraphicComponent } from './components/piechart-graphic/piechart-graphic.component';
 import { MyAccountComponent } from './components/myaccount/myaccount.component';
+import { RoomsComponent } from './components/rooms/rooms.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MyAccountComponent } from './components/myaccount/myaccount.component';
     HoteladminReservationsComponent,
     BarGraphicComponent,
     PiechartGraphicComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    RoomsComponent
   ],
   imports: [
     BrowserModule,

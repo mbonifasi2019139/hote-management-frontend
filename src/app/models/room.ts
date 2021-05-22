@@ -4,5 +4,6 @@ export class Room {
         public name: string,
         public available:  Boolean,
         public price_for_day: number,
+        public available_day: number
     ){}
 }
