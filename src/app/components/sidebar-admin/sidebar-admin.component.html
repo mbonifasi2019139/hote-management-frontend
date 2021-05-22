@@ -22,8 +22,8 @@
             <li class="nav-item" *ngIf="role == 'ROLE_ADMIN'">
                 <a class="nav-link" routerLink="/homeHotels">Hoteles</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" tabindex="-1" aria-disabled="true">Servicios</a>
+            <li class="nav-item" *ngIf="role == 'ROLE_HOTEL'">
+                <a class="nav-link" routerLink="/hotelService">Servicios</a>
             </li>
         </ul>
     </nav>
@@ -31,7 +31,6 @@
     <footer>
         <button type="button" class="btn btn-outline-light" (click)="logOut()">
             Cerrar sesion
-            
         </button>
         <button type="button" class="btn btn-outline-light ml-4" routerLink="/myaccount">
             <i class="bi bi-sliders"></i>

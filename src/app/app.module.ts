@@ -11,7 +11,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
-
 import { RestUserService } from './services/restUser/rest-user.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { UsersComponent } from './components/users/users.component';
@@ -19,14 +18,15 @@ import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.
 import { HomeAdminComponent } from './components/home-admin/home-admin.component';
 import { HomeHotelsComponent } from './components/home-hotels/home-hotels.component';
 import { HoteladminReservationsComponent } from './components/hoteladmin-reservations/hoteladmin-reservations.component';
+import { MyAccountComponent } from './components/myaccount/myaccount.component';
+import { RoomsComponent } from './components/rooms/rooms.component';
+import { HotelServiceComponent } from './components/hotel-service/hotel-service.component';
 import { DatePipe } from '@angular/common';
 
 // Graphics
 import { ChartsModule } from 'ng2-charts';
 import { BarGraphicComponent } from './components/bar-graphic/bar-graphic.component';
 import { PiechartGraphicComponent } from './components/piechart-graphic/piechart-graphic.component';
-import { MyAccountComponent } from './components/myaccount/myaccount.component';
-import { RoomsComponent } from './components/rooms/rooms.component';
 
 @NgModule({
   declarations: [
@@ -44,13 +44,14 @@ import { RoomsComponent } from './components/rooms/rooms.component';
     BarGraphicComponent,
     PiechartGraphicComponent,
     MyAccountComponent,
-    RoomsComponent
+    RoomsComponent,
+    HotelServiceComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
     ChartsModule
   ],

@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
           if(this.userLogged.role == "ROLE_ADMIN"){
             this.router.navigateByUrl('homeAdmin');
           }else if(this.userLogged.role == "ROLE_HOTEL"){
+            localStorage.setItem('hotel', JSON.stringify(res.hotelFound) );
             this.router.navigateByUrl('homeAdmin');
           }else if(this.userLogged.role == "ROLE_CLIENT"){
             this.router.navigateByUrl('home')
