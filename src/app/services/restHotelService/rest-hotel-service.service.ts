@@ -45,4 +45,12 @@ export class RestHotelServiceService {
     return this.http.post(`${this.uri}createService/${hotelId}`, params, {headers}).pipe(map(this.extractData));
   }
 
+  getServicesHotel(){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    });
+    return this.http.get(`${this.uri}getServicesHotel`, {headers}).pipe(map(this.extractData))
+  }
+
 }

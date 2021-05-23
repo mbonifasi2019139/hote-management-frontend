@@ -6,11 +6,16 @@
 }
 
 .maxheight {
-    max-height: 40rem;
+    max-height: 30rem;
 }
 
 .rooms {
     width: 18rem;
     display: inline-block!important;
     margin: 1.25rem;
+}
+
+.minheight {
+    max-height: 20rem!important;
+    min-height: 15rem!important;
 }

@@ -32,19 +32,18 @@ export class HoteladminReservationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     this.restHotel.getHotelByHotelAdmin().subscribe((resp: any)=>{
-      this.hotel = resp.hotel[0];
-     });
+     this.hotel = JSON.parse(localStorage.getItem('hotel'))
     this.restReservation.getReservations().subscribe((resp:any)=>{
-      resp.reservations.forEach(element => {
-        var roomId = element.room;
-        var userId = element.user;
-        this.restRoom.getRoom(roomId).subscribe((resp:any)=>{
-          this.room = resp.rooms;
-        });
-        this.restUser.getUserByHotelAdmin(userId).subscribe((resp:any)=>{
-          this.users.push(resp.user);
-        });
+      resp.reservationsFound.forEach(element => {
+        // var roomId = element.room;
+        // var userId = element.user;
+        // this.restRoom.getRoom(roomId).subscribe((resp:any)=>{
+        //   this.room = resp.rooms;
+        // });
+        // this.restUser.getUserByHotelAdmin(userId).subscribe((resp:any)=>{
+        //   this.users.push(resp.user);
+        // });
+        // this.reservations.push(element);
         this.reservations.push(element);
       });
     })

@@ -12,6 +12,17 @@
                 <input class="form-control me-2 rounded-pill colp-3" type="search" placeholder="Busca un servicios . . ." aria-label="search">
             </form>
         </div>
+        <div class="overflow-auto maxheight">
+            <div class="card services shadow-sm" *ngFor="let hotelService of hotelServices">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h5 class="card-title font-weight-bolder"> {{ hotelService.name }}</h5>
+                    <p class="card-text">{{ hotelService.price_service }}</p>
+                    <a class="btn btn-primary mr-2" data-toggle="modal" data-target="#staticBackdrop">Actualizar</a>
+                    <a class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">Eliminar</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

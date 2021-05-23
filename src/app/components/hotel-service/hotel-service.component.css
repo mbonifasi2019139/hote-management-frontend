@@ -4,3 +4,13 @@
     margin: 0 auto!important;
     height: 100vh!important;
 }
+
+.maxheight {
+    max-height: 30rem;
+}
+
+.services {
+    width: 18rem;
+    display: inline-block!important;
+    margin: 1.25rem;
+}

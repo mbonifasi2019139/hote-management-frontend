@@ -12,6 +12,7 @@ export class HotelServiceComponent implements OnInit {
 
   service: Service;
   hotel: Hotel;
+  hotelServices: Array<Service> = [];
 
   constructor(private restHotelService: RestHotelServiceService) { 
     this.service = new Service("", "", null);
@@ -19,6 +20,12 @@ export class HotelServiceComponent implements OnInit {
 
   ngOnInit(): void {
     this.hotel = JSON.parse(localStorage.getItem('hotel'));
+    this.restHotelService.getServicesHotel().subscribe((resp: any) => {
+      console.log(resp);
+      resp.services.forEach(element => {
+        this.hotelServices.push(element);
+      });
+    })
   }
 
   onSubmit(formService){

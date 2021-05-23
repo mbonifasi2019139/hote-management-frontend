@@ -24,15 +24,12 @@ export class RoomsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.rooms = [];
-    this.restHotel.getHotelByHotelAdmin().subscribe((resp: any)=>{
-      this.hotel = resp.hotel[0];
-    });
+
+    this.hotel = JSON.parse(localStorage.getItem("hotel"));
+
     this.restRoom.getRoomsByHotelAdmin().subscribe((resp:any)=>{
-      resp.rooms.forEach(element => {
-        this.restRoom.getRoom(element).subscribe((resp:any)=>{
-          this.rooms.push(resp.rooms);
-        })
+      resp.forEach(element => {
+        this.rooms.push(element)
       });
     })
   }
