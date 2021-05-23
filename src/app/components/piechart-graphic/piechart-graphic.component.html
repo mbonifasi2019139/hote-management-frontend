@@ -1,4 +1,5 @@
-<div>
+<p><small class="font-weight-bold">Hotel mas solicitado</small></p>
+<div class="border border-success" *ngIf="pieChartLabels.length != 0 && pieChartData.length != 0; else noData">
     <div>
         <div class="chart">
             <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" [colors]="pieChartColors" [legend]="pieChartLegend">
@@ -6,10 +7,6 @@
         </div>
     </div>
 </div>
-<div>
-    <button mat-button mat-raised-button color="primary" (click)="pieChartLegend=!pieChartLegend">Toggle Legend</button>
-    <button mat-button mat-raised-button color="primary" (click)="changeLabels()">Change Labels</button>
-    <button mat-button mat-raised-button color="primary" (click)="addSlice()">Add Slice</button>
-    <button mat-button mat-raised-button color="primary" (click)="removeSlice()">Remove Slice</button>
-    <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()">Change Legend Position</button>
-</div>
+<ng-template #noData>
+    <p class="text-muted">No existen datos suficientes para generar grafica de pastel</p>
+</ng-template>

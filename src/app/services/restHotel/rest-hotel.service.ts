@@ -76,5 +76,14 @@ export class RestHotelService {
     return this.http.get(`${this.uri}getHotelBydAdminHotelID`, {headers}).pipe(map(this.extractData));
   }
 
+  getHotelsNames(){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      "Authorization": this.getToken()
+    });
+
+    return this.http.get(`${this.uri}getHotelsnames`, {headers}).pipe(map(this.extractData));
+  }
+
 
 }

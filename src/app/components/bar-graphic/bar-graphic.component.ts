@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { RestHotelService } from '../../services/restHotel/rest-hotel.service';
 @Component({
   selector: 'app-bar-graphic',
   templateUrl: './bar-graphic.component.html',
@@ -8,15 +9,28 @@ import { Label } from 'ng2-charts';
 })
 export class BarGraphicComponent implements OnInit {
 
-  constructor() { }
+  constructor(private restHotel: RestHotelService) { }
 
   ngOnInit(): void {
+    this.restHotel.getHotelsNames().subscribe((resp: any) => {
+      let dataForGraphics: Array<number>= [];
+      resp.hotelsGraphic.forEach(hotel => {
+        this.barChartLabels.push(hotel.hotelName);
+        dataForGraphics.push(hotel.count_reservations);
+      });
+      this.barChartData[0].data = dataForGraphics;
+      if(this.barChartData[0].data.length != 0){
+         for (let iterator = 0; iterator < this.barChartData[0].data.length; iterator++) {
+           this.barChartColor[0].backgroundColor.push(this.getRandomColor());
+       }
+      }
+    })
   }
 
   public barChartOptions: ChartOptions = {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
-    scales: { xAxes: [{}], yAxes: [{}] },
+    scales: { xAxes: [{stacked: true}], yAxes: [{stacked: true}] },
     plugins: {
       datalabels: {
         anchor: 'end',
@@ -24,12 +38,22 @@ export class BarGraphicComponent implements OnInit {
       }
     }
   };
-  public barChartLabels: Label[] = ['Barcelo', 'Bonifaz', 'Hotel', 'Westing', 'Camino Real', 'Nose', 'Cristal'];
+  // public barChartLabels: Label[] = ['Barcelo', 'Bonifaz', 'Hotel', 'Westing', 'Camino Real', 'Nose', 'Cristal'];
+  public barChartLabels: Label[] = [];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
+  public barChartColor = [
+    {
+      backgroundColor: [],
+    },
+  ];
 
   public barChartData: ChartDataSets[] = [
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Cantidad de Reservaciones' }
+    { data: [], 
+      
+      label: 'Cantidad de Reservaciones', 
+      minBarLength: -1,
+    }
   ];
 
   // events
@@ -41,16 +65,8 @@ export class BarGraphicComponent implements OnInit {
     console.log(event, active);
   }
 
-  public randomize(): void {
-    // Only Change 3 values
-    this.barChartData[0].data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40 ];
+  public getRandomColor() {
+    var color = Math.floor(0x1000000 * Math.random()).toString(16);
+    return '#' + ('000000' + color).slice(-6);
   }
-
 }

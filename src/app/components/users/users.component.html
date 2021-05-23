@@ -12,7 +12,7 @@
                 <input class="form-control me-2 rounded-pill colp-3" type="search" placeholder="Busca un usuario . . ." aria-label="search">
             </form>
         </div>
-        <div class="overflow-auto maxheight">
+        <div class="overflow-auto maxheight" *ngIf="users.length != 0; else noData">
             <div class="card users shadow-sm" *ngFor="let user of users">
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
@@ -22,6 +22,9 @@
                 </div>
             </div>
         </div>
+        <ng-template #noData>
+            <p class="text-muted">No existen usuarios</p>
+        </ng-template>
     </div>
 </div>
 
