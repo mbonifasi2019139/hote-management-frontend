@@ -19,6 +19,7 @@ export class HotelServiceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.hotelServices = [];
     this.hotel = JSON.parse(localStorage.getItem('hotel'));
     this.restHotelService.getServicesHotel().subscribe((resp: any) => {
       console.log(resp);
@@ -30,7 +31,12 @@ export class HotelServiceComponent implements OnInit {
 
   onSubmit(formService){
     this.restHotelService.saveServiceHotel(this.service, this.hotel._id).subscribe((resp:any) =>{
-      console.log(resp);
+      if(resp.hotelUpdated){
+        formService.reset();
+        alert(resp.message);
+      }else{
+        alert(resp.message);
+      }
     })
   }
 

@@ -72,6 +72,13 @@
                             <input [(ngModel)]="room.price_for_day" name="price" type="number" class="form-control" id="inputPrice" required>
                         </div>
                     </div>
+                    <div class="form-group ">
+                        <label for="inputUserAdmin">Elige el tipo de Habitación</label>
+                        <select [(ngModel)]="room.typeRoom" name="typeRoom " id="inputTypeRoom " class="form-control " required>
+                            <option selected disabled>Elige un tipo de habitación...</option>
+                            <option *ngFor="let typeRoom of selectRoom" [value]="typeRoom">{{ typeRoom }}</option> 
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary btn-block" [disabled]="!saveRoomByAdminForm.form.valid">Crear</button><br>
                     <button type="submit" class="btn btn-danger btn-block" data-dismiss="modal">Cancelar</button>
                 </form>

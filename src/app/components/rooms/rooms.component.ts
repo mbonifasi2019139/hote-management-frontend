@@ -17,10 +17,11 @@ export class RoomsComponent implements OnInit {
   room: Room;
   rooms: Array<Room> = [];
   confirmPassword;
+  selectRoom = ["Habitación Dormitorio", "Salón de evento"];
 
   constructor(private restRoom: RestRoomService, private datepipe: DatePipe, private restHotel: RestHotelService, private router: Router) { 
     this.hotel = new Hotel("", "", "", "", null, "", "", [], []);
-    this.room = new Room("","",null,null,null);
+    this.room = new Room("","",null,null,null,"");
   }
 
   ngOnInit(): void {
@@ -57,9 +58,9 @@ export class RoomsComponent implements OnInit {
     }, 
     err => alert(err.error.message));
   }
-
+ 
   deleteInfo(){
-    this.room = new Room("","",null,null,null);
+    this.room = new Room("","",null,null,null,"");
   }
 
   removeRoom(){

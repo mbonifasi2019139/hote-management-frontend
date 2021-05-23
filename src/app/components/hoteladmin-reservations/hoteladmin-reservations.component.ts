@@ -28,7 +28,7 @@ export class HoteladminReservationsComponent implements OnInit {
     this.user = new User("","","","","","","",[],[],[]);
     this.reservation = new Reservation("","","","",null,null,null,null,[],[]);
     this.hotel = new Hotel("", "", "", "", null, "", "", [], []);
-    this.room = new Room("","",null,null,null);
+    this.room = new Room("","",null,null,null,"");
   }
 
   ngOnInit(): void {
