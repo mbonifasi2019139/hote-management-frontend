@@ -25,6 +25,8 @@ export class RoomsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.rooms = [];
+
     this.hotel = JSON.parse(localStorage.getItem("hotel"));
 
     this.restRoom.getRoomsByHotelAdmin().subscribe((resp:any)=>{
