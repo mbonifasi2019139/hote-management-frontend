@@ -10,6 +10,7 @@ import { HoteladminReservationsComponent } from './components/hoteladmin-reserva
 import { MyAccountComponent } from './components/myaccount/myaccount.component';
 import { RoomsComponent } from './components/rooms/rooms.component';
 import { HotelServiceComponent } from './components/hotel-service/hotel-service.component';
+import { EventsComponent } from './components/events/events.component';
 
 const routes: Routes = [
   /* {
@@ -47,6 +48,9 @@ const routes: Routes = [
   },
   {
     path: "hotelService", component: HotelServiceComponent
+  },
+  {
+    path: "events", component: EventsComponent
   },
   {
     path: "**", component: HomeAdminComponent

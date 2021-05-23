@@ -27,6 +27,7 @@ import { DatePipe } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
 import { BarGraphicComponent } from './components/bar-graphic/bar-graphic.component';
 import { PiechartGraphicComponent } from './components/piechart-graphic/piechart-graphic.component';
+import { EventsComponent } from './components/events/events.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { PiechartGraphicComponent } from './components/piechart-graphic/piechart
     PiechartGraphicComponent,
     MyAccountComponent,
     RoomsComponent,
-    HotelServiceComponent
+    HotelServiceComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,
