@@ -11,6 +11,8 @@ import { MyAccountComponent } from './components/myaccount/myaccount.component';
 import { RoomsComponent } from './components/rooms/rooms.component';
 import { HotelServiceComponent } from './components/hotel-service/hotel-service.component';
 import { EventsComponent } from './components/events/events.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
+import { HistoryComponent } from './components/history/history.component';
 
 const routes: Routes = [
   /* {
@@ -51,6 +53,12 @@ const routes: Routes = [
   },
   {
     path: "events", component: EventsComponent
+  },
+  {
+    path: "invoices", component: InvoiceComponent
+  },
+  {
+    path: "history", component: HistoryComponent
   },
   {
     path: "**", component: HomeAdminComponent

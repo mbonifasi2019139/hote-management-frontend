@@ -81,4 +81,13 @@ export class RestRoomService {
     return this.http.put(this.uri+'deleteRoom/' + idRoom, {password: password}, {headers: headers})
       .pipe(map(this.extractData));
   }
+
+  getRoomByUser(roomId){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      "Authorization": this.getToken()
+    });
+
+    return this.http.get(`${this.uri}getRoom/${roomId}`, {headers}).pipe(map(this.extractData));
+  }
 }

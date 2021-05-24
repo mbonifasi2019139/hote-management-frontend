@@ -28,6 +28,8 @@ import { ChartsModule } from 'ng2-charts';
 import { BarGraphicComponent } from './components/bar-graphic/bar-graphic.component';
 import { PiechartGraphicComponent } from './components/piechart-graphic/piechart-graphic.component';
 import { EventsComponent } from './components/events/events.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { EventsComponent } from './components/events/events.component';
     MyAccountComponent,
     RoomsComponent,
     HotelServiceComponent,
-    EventsComponent
+    EventsComponent,
+    InvoiceComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

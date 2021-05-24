@@ -4,7 +4,7 @@ import { Hotel } from 'src/app/models/hotel';
 import { Reservation } from 'src/app/models/reservation';
 import { Room } from 'src/app/models/room';
 import { User } from 'src/app/models/user';
-import { RestHotelService } from 'src/app/services/restHotel/rest-hotel.service';
+import { RestInvoiceService } from 'src/app/services/restInvoice/rest-invoice.service';
 import { RestReservationService } from 'src/app/services/restReservation/rest-reservation.service';
 import { RestRoomService } from 'src/app/services/restRoom/rest-room.service';
 import { RestUserService } from 'src/app/services/restUser/rest-user.service';
@@ -23,7 +23,7 @@ export class HoteladminReservationsComponent implements OnInit {
   users: Array<User> = [];
   reservations: Array<Reservation> = [];
 
-  constructor(private restReservation: RestReservationService, private restHotel: RestHotelService, private restUser: RestUserService,
+  constructor(private restReservation: RestReservationService, private restInvoice: RestInvoiceService, private restUser: RestUserService,
     private datepipe: DatePipe, private restRoom: RestRoomService) { 
     this.user = new User("","","","","","","",[],[],[]);
     this.reservation = new Reservation("","","","",null,null,null,null,[],[]);
@@ -32,7 +32,8 @@ export class HoteladminReservationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     this.hotel = JSON.parse(localStorage.getItem('hotel'))
+    this.reservations = [];
+    this.hotel = JSON.parse(localStorage.getItem('hotel'))
     this.restReservation.getReservations().subscribe((resp:any)=>{
       resp.reservationsFound.forEach(element => {
         // var roomId = element.room;
@@ -72,6 +73,19 @@ export class HoteladminReservationsComponent implements OnInit {
       }
     })
     return username;
+  }
+
+  createInvoice(){
+    var idReservation = this.reservation._id;
+    console.log(this.reservation._id);
+    this.restInvoice.createInvoice(idReservation).subscribe((resp:any)=>{
+      if(resp.message == "Facturado exitosamente"){
+        alert(resp.message);
+        this.ngOnInit();
+      }else{
+        alert(resp.message);
+      }
+    })
   }
 
 }

@@ -41,4 +41,13 @@ export class RestReservationService {
 
     return this.http.get(`${this.uri}getReservationsByHotelAdmin`, {headers}).pipe(map(this.extractData));
   }
+
+  getReservationsByUser(){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      "Authorization": this.getToken()
+    });
+
+    return this.http.get(`${this.uri}getReservationsByUser`, {headers}).pipe(map(this.extractData));
+  }
 }

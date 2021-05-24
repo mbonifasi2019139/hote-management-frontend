@@ -81,7 +81,7 @@
                 <p *ngIf="reservation.status == false">Estado: <strong> Finalizada </strong> </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success">Facturar</button>
+                <button type="button" class="btn btn-success" (click)="createInvoice()">Facturar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
