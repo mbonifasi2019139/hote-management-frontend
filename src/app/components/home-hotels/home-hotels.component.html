@@ -24,8 +24,9 @@
                     <p class="card-text"> {{ hotel.address }} </p>
                     <a *ngIf="role == 'ROLE_ADMIN' || role == 'ROLE_HOTEL'; else buttonsHotel" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Detalle Hotel</a>
                     <ng-template #buttonsHotel>
-                        <a class="btn btn-primary mr-1" data-toggle="modal" data-target="#staticBackdrop">Reservar</a>
-                        <a class="btn btn-info" data-toggle="modal" data-target="#staticBackdrop">Detalle Hotel</a>
+                        <a class="btn btn-info btn-block" data-toggle="modal" data-target="#detalleModal" (click)='setHotelDetail(hotel)'>Detalle Hotel</a>
+                        <a class="btn btn-danger btn-block mt-2" routerLink="/rooms" routerLink="/hotelRooms" (click)="setLSRoom(hotel)">Ver habitaciones</a>
+                        <a class="btn btn-primary btn-block mt-2" routerLink="/rooms" routerLink="/events" (click)="setLSRoom(hotel)">Ver eventos</a>
                     </ng-template>
                 </div>
             </div>
@@ -106,7 +107,112 @@
 
             </div>
             <div class="modal-footer ">
-                <button type="submit " class="btn btn-secondary " data-dismiss="modal ">Cancelar</button>
+                <button type="submit " class="btn btn-secondary " data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal para reservar -->
+<div class="modal fade" id="reservarModal" tabindex="-1" aria-labelledby="reservarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reservarModalLabel">Reservar Hotel</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+
+                <form #formSetReservation="ngForm">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#roomModal">Ver y Seleccionar Habitación</button>
+                    </div>
+                    <div class=" form-row ">
+                        <div class="form-group col-md-6 ">
+                            <label for="inputAddress ">Fecha de inicio</label>
+                            <input [(ngModel)]="reservation.start_date" type="date" name="datestart" class="form-control" id="inputDateStart" required>
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label for="inputAddress ">Fecha final</label>
+                            <input [(ngModel)]="reservation.end_date" type="date" name="datefinal" class="form-control" id="inputDateFinal" required>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="labelService">Servicios disponibles</label>
+                        <select name="inputService" id="inputCountry" class="form-control " required>
+                        <option selected disabled>Elige un Servicio</option>
+                        <option *ngFor="let service of servicess" [value]="service">{{ service.name }}</option> 
+                    </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="onSubmitR(formSetReservation)" [disabled]="!formSetReservation.form.valid">Reservar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para detalle Hotel -->
+<div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detalleModalLabel">Detalles del Hotel</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+
+
+                <p>Nombre: <strong>{{ hotel.name}}</strong> </p>
+                <br>
+                <p>Pais: <strong>{{ hotel.country}} </strong></p>
+                <br>
+                <p>Dirección: <strong>{{ hotel.address}}</strong> </p>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para seleccionar habitación -->
+<div class="modal fade" id="roomModal" tabindex="-1" aria-labelledby="roomLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="roomLabel">Detalles del Hotel</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="overflow-auto maxheight">
+                    <div class="card rooms shadow-sm" *ngFor="let room of rooms">
+                        <div class="card-body minheight">
+                            <h5 class="card-title font-weight-bolder">{{ room.name }}</h5>
+                            <p class="card-text"><strong>Precio: </strong> ${{ room.price_for_day }}</p>
+                            <p class="card-text" *ngIf="room.available == true"><strong>Estado: </strong>Disponible</p>
+                            <p class="card-text" *ngIf="room.available == false"><strong>Estado: </strong>Disponible hasta {{ showDateInFormat(room.available_day) }}</p>
+                            <a class="btn btn-primary btn-block" data-dismiss="modal" data-toggle="modal" (click)="obtenerDataRoom(room)">Seleccionar</a><br>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

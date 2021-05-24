@@ -1,6 +1,7 @@
 <div class="main p-4">
     <div class="container">
-        <div class="jumbotron jumbotron-fluid bg-success text-light rounded p-4">
+        <div class="jumbotron jumbotron-fluid bg-success text-light rounded p-4 d-flex">
+            <a class="btn btn-outline-light "><i class="bi bi-arrow-90deg-left " routerLink="/homeHotels"></i></a>
             <div class="container">
                 <h1 class="display-4 font-weight-bolder">Eventos</h1>
                 <p class="lead">En esta sección puedes administrar todos los eventos del hotel <span class="font-weight-bolder">{{ hotel.name }}</span>.</p>
@@ -15,13 +16,13 @@
                     <p class="card-text"><strong>Precio: </strong> ${{ event.price_event}} </p>
                     <p class="card-text" *ngIf="event.type_of_event == 'Private'"><strong>Tipo: </strong>Privado</p>
                     <p class="card-text" *ngIf="event.type_of_event == 'Public'"><strong>Tipo: </strong>Público</p>
-                    <a class="btn btn-primary mb-2" data-toggle="modal" data-target="#updateEvent" (click)="setEvent(event)">Actualizar Evento</a>
-                    <a class="btn btn-danger mb-2" data-toggle="modal" data-target="#deleteEvent" (click)="setEvent(event)">Eliminar</a>
+                    <a *ngIf="role != 'ROLE_CLIENT'" class="btn btn-primary mb-2" data-toggle="modal" data-target="#updateEvent" (click)="setEvent(event)">Actualizar Evento</a>
+                    <a *ngIf="role != 'ROLE_CLIENT'" class="btn btn-danger mb-2" data-toggle="modal" data-target="#deleteEvent" (click)="setEvent(event)">Eliminar</a>
                 </div>
             </div>
         </div>
-        <div class="alert alert-success center" role="alert">Salones de eventos</div>
-        <div class="overflow-auto maxheight">
+        <div *ngIf="role != 'ROLE_CLIENT'" class="alert alert-success center" role="alert">Salones de eventos</div>
+        <div *ngIf="role != 'ROLE_CLIENT'" class="overflow-auto maxheight">
             <div class="card events shadow-sm" *ngFor="let room of roomsEvent">
                 <div class="card-body minheight">
                     <h5 class="card-title font-weight-bolder"> {{ room.name }} </h5>

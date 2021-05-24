@@ -26,9 +26,6 @@
                 <li class="nav-item">
                     <a *ngIf="role == 'ROLE_ADMIN' || role == 'ROLE_CLIENT'" class="nav-link" routerLink="/homeHotels">Hoteles</a>
                 </li>
-                <li class="nav-item">
-                    <a *ngIf="role == 'ROLE_ADMIN' || role == 'ROLE_CLIENT'" class="nav-link" routerLink="/home">Eventos</a>
-                </li>
                 <li *ngIf="token != null" class="nav-item dropleft">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropleft" role="button" data-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-gear-fill"></i>

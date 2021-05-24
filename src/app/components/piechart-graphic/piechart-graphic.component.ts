@@ -16,8 +16,10 @@ export class PiechartGraphicComponent implements OnInit {
     this.restHotel.getHotelsNames().subscribe((resp: any) => {
       let dataForGraphics: Array<number>= [];
       resp.hotelsGraphic.forEach(hotel => {
-        this.pieChartLabels.push(hotel.hotelName);
+        if(hotel.count_reservations != 0){
+          this.pieChartLabels.push(hotel.hotelName);
         this.pieChartData.push(hotel.count_reservations);
+        }
       });
 
       if(this.pieChartData.length != 0){

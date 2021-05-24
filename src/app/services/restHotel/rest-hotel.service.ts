@@ -47,6 +47,10 @@ export class RestHotelService {
     return this.http.get(`${this.uri}getHotels`, {headers}).pipe(map(this.extractData));
   }
 
+  getHotelsRecomendations(){
+    return this.http.get(`${this.uri}getHotelsRecomendations`).pipe(map(this.extractData));
+  }
+
   createHotel(hotel:Hotel){
     let params = JSON.stringify(hotel);
 
@@ -85,5 +89,13 @@ export class RestHotelService {
     return this.http.get(`${this.uri}getHotelsnames`, {headers}).pipe(map(this.extractData));
   }
 
+  getRoomsByHotel(idH){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      "Authorization": this.getToken()
+    });
+
+    return this.http.get(this.uri+'getRoomsByHotel/'+idH,{headers}).pipe(map(this.extractData));
+  }
 
 }
