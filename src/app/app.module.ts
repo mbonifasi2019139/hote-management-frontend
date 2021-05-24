@@ -30,6 +30,7 @@ import { PiechartGraphicComponent } from './components/piechart-graphic/piechart
 import { EventsComponent } from './components/events/events.component';
 import { HotelRoomsComponent } from './components/hotel-rooms/hotel-rooms.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ReservationComponent } from './components/reservation/reservation.compo
     HotelServiceComponent,
     EventsComponent,
     HotelRoomsComponent,
-    ReservationComponent
+    ReservationComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

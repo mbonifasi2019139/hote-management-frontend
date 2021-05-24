@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Hotel } from 'src/app/models/hotel';
 import { Reservation } from 'src/app/models/reservation';
 import { Room } from 'src/app/models/room';
@@ -24,7 +25,7 @@ export class ReservationComponent implements OnInit {
 
   yourServices: Array<Service> = [];
 
-  constructor(private restReservation: RestReservationService) { 
+  constructor(private restReservation: RestReservationService, private router: Router) { 
     this.reservation = new Reservation('','','','',null,null,null,null,[],[]);
   }
 
@@ -72,6 +73,7 @@ export class ReservationComponent implements OnInit {
     this.restReservation.setReservation(this.reservation, this.hotel._id, this.user._id, this.room._id).subscribe( (resp: any) => {
       console.log(resp);
       alert(resp.message);
+      this.router.navigateByUrl('homeHotels');
     })
   }
 }

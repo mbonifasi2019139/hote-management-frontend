@@ -17,6 +17,8 @@ import { RestRoomService } from '../../services/restRoom/rest-room.service';
 })
 export class HomeHotelsComponent implements OnInit, DoCheck {
 
+  search;
+
   countries: Array<Country> = [];
   user: User;
   hotel: Hotel;
@@ -52,7 +54,7 @@ export class HomeHotelsComponent implements OnInit, DoCheck {
         });
       });
   
-    if(this.role == "ROLE_HOTEL"){
+    if(this.role == "ROLE_ADMIN"){
     this.restUser.getManagements().subscribe((resp: any)=> {
       resp.managements.forEach(element => {
         this.usersManagements.push(element);
