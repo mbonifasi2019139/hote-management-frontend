@@ -13,8 +13,9 @@ import { RestRoomService } from 'src/app/services/restRoom/rest-room.service';
 })
 export class EventsComponent implements OnInit {
 
-  hotel: Hotel;
+  hotel: Hotel = null;
   room: Room;
+  role: string = null;
   event: Event;
   events: Array<Event> = [];
   roomsEvent: Array<Room> = [];
@@ -30,11 +31,18 @@ export class EventsComponent implements OnInit {
   ngOnInit(): void {
     this.roomsEvent = [];
     this.events = [];
+    this.role = localStorage.getItem('role');
+    console.log(this.hotel);
+    this.hotel = JSON.parse(localStorage.getItem("currentHotel")) || JSON.parse(localStorage.getItem('hotel'));
 
-    this.hotel = JSON.parse(localStorage.getItem("hotel"));
+    this.hotel.events.forEach( event => {
+      this.events.push(event);
+    })
+
+    console.log(this.events);
 
     this.restEvent.getEventsByHotelAdmin().subscribe((resp:any)=>{
-      resp.events.forEach(element => {
+       resp.events.forEach(element => {
         this.events.push(element);
       });
     })

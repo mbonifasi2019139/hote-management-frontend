@@ -13,6 +13,12 @@ import { HotelServiceComponent } from './components/hotel-service/hotel-service.
 import { EventsComponent } from './components/events/events.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
 import { HistoryComponent } from './components/history/history.component';
+import { AdminGuard } from './guards/admin.guard';
+import { RolehotelGuard } from './guards/rolehotel.guard';
+import { HotelRoomsComponent } from './components/hotel-rooms/hotel-rooms.component';
+import { ReservationComponent } from './components/reservation/reservation.component';
+import { UserGuardGuard } from './guards/user-guard.guard';
+import { AccessHomeAdminGuard } from './guards/access-home-admin.guard';
 
 const routes: Routes = [
   /* {
@@ -31,28 +37,34 @@ const routes: Routes = [
     path: "home", component: HomeComponent
   },
   {
-    path: 'homeHotels',component: HomeHotelsComponent
+    path: 'homeHotels', canActivate: [UserGuardGuard], component: HomeHotelsComponent
   },
   {
-    path: "homeAdmin", component: HomeAdminComponent
+    path: "homeAdmin", canActivate: [AccessHomeAdminGuard], component: HomeAdminComponent
   },
   {
-    path: "users", component: UsersComponent
+    path: "users", canActivate: [AdminGuard], component: UsersComponent
   },
   {
-    path: "rooms", component: RoomsComponent
+    path: "rooms", canActivate: [RolehotelGuard],component: RoomsComponent
   },
   {
-    path: "reservations", component: HoteladminReservationsComponent
+    path: "reservations", canActivate: [RolehotelGuard], component: HoteladminReservationsComponent
   },
   {
-    path: "myaccount", component: MyAccountComponent
+    path: "myaccount", canActivate: [UserGuardGuard],  component: MyAccountComponent
   },
   {
-    path: "hotelService", component: HotelServiceComponent
+    path: "hotelService", canActivate: [RolehotelGuard], component: HotelServiceComponent
   },
   {
-    path: "events", component: EventsComponent
+    path: "events", canActivate: [UserGuardGuard], component: EventsComponent
+  },
+  {
+    path: "hotelRooms", canActivate: [UserGuardGuard], component: HotelRoomsComponent
+  },
+  {
+    path: "reservation", canActivate: [UserGuardGuard], component: ReservationComponent
   },
   {
     path: "invoices", component: InvoiceComponent

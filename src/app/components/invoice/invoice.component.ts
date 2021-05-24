@@ -48,7 +48,7 @@ export class InvoiceComponent implements OnInit {
       })
     }else if(this.role == "ROLE_CLIENT"){
       this.restInvoice.getInvoicesByUser().subscribe((resp:any)=>{
-        this.restInvoice.getInvoicesByHotelAdmin().subscribe((resp:any)=>{
+        this.restInvoice.getInvoicesByUser().subscribe((resp:any)=>{
           resp.invoices.forEach(element => {
             this.invoices.push(element);
           });

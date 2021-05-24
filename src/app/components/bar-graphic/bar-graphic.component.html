@@ -1,5 +1,5 @@
 <p><small class="font-weight-bold">Reservaciones por hotel</small></p>
-<div class="border border-success" *ngIf="barChartLabels.length != 0 && barChartData.length != 0; else noData">
+<div class="border border-success" *ngIf="barChartData[0].data.length != 0; else noData">
     <div>
         <div style="display: block">
             <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColor">

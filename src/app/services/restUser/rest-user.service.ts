@@ -106,11 +106,7 @@ export class RestUserService {
 
   getUser(){
     let user = JSON.parse(localStorage.getItem('user'));
-    if(user != undefined || user != null){
-      this.user = user;
-    }else{
-      this.user = null;
-    }
+    this.user = (user != undefined || user != null)? user: null;
 
     return this.user;
   }

@@ -10,10 +10,9 @@ import { User } from 'src/app/models/user';
 export class UsersComponent implements OnInit, DoCheck {
   user: User;
 
-
+  userAdmin: User;
   users: [] = [];
   roles: Array<String> = ["ROLE_CLIENT", "ROLE_ADMIN", "ROLE_HOTEL"];
-  usernameCurrentUser: String = null;
 
   username: String = null;
   name: String = null;
@@ -26,15 +25,14 @@ export class UsersComponent implements OnInit, DoCheck {
 
   ngOnInit(){
     this.restUser.getUsers().subscribe((resp: any) => {
-      console.log(resp);
       this.users = resp.users;
     });
-    this.usernameCurrentUser = localStorage.getItem('username');
+    this.userAdmin = this.restUser.getUser();
+    localStorage.setItem('users', JSON.stringify(this.users));
   }
 
   ngDoCheck(){
-    this.usernameCurrentUser = this.restUser.getUsername();
-    
+    this.userAdmin = this.restUser.getUser();
   }
 
   setUserDetail(user:any){
@@ -45,13 +43,13 @@ export class UsersComponent implements OnInit, DoCheck {
   }
 
   onSubmit(saveUserByAdminForm){
+    console.log(this.user);
     this.restUser.saveUserByAdmin(this.user).subscribe( (resp:any) => {
       if(resp.userSaved){
         alert(resp.message);
         saveUserByAdminForm.reset();
-        this.user = resp.userSaved;
-        localStorage.setItem('user', JSON.stringify(this.user))
-        // this.user = resp.userSaved;
+        this.users = resp.users;
+        localStorage.setItem("users", JSON.stringify(this.users));
       }else {
         alert(resp.message);
       }

@@ -1,5 +1,5 @@
 <p><small class="font-weight-bold">Hotel mas solicitado</small></p>
-<div class="border border-success" *ngIf="pieChartLabels.length != 0 && pieChartData.length != 0; else noData">
+<div class="border border-success" *ngIf="pieChartData.length != 0; else noData">
     <div>
         <div class="chart">
             <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" [colors]="pieChartColors" [legend]="pieChartLegend">

@@ -16,7 +16,9 @@ export class BarGraphicComponent implements OnInit {
       let dataForGraphics: Array<number>= [];
       resp.hotelsGraphic.forEach(hotel => {
         this.barChartLabels.push(hotel.hotelName);
-        dataForGraphics.push(hotel.count_reservations);
+        if(hotel.count_reservations != 0){
+          dataForGraphics.push(hotel.count_reservations);
+        }
       });
       this.barChartData[0].data = dataForGraphics;
       if(this.barChartData[0].data.length != 0){
@@ -38,7 +40,6 @@ export class BarGraphicComponent implements OnInit {
       }
     }
   };
-  // public barChartLabels: Label[] = ['Barcelo', 'Bonifaz', 'Hotel', 'Westing', 'Camino Real', 'Nose', 'Cristal'];
   public barChartLabels: Label[] = [];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;

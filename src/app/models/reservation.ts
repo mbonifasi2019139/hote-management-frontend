@@ -1,3 +1,5 @@
+import { Service } from "./service";
+
 export class Reservation {
     constructor (
         public _id: string,
@@ -8,7 +10,7 @@ export class Reservation {
         public end_date: Date,
         public total_price: number,
         public status: boolean,
-        public services: [],
+        public services: Array<Service>,
         public events: []
     ){}
 }
