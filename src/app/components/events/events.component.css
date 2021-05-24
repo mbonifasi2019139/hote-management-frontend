@@ -9,8 +9,13 @@
     max-height: 30rem;
 }
 
-.users {
+.events {
     width: 18rem;
     display: inline-block!important;
     margin: 1.25rem;
+}
+
+.center {
+    text-align: center;
+    align-items: center;
 }
