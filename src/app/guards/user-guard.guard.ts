@@ -13,7 +13,7 @@ export class UserGuardGuard implements CanActivate {
       let user = this.restUser.getUser();
 
       let token = this.restUser.getToken();
-      if(user && token.length > 0){
+      if(user && token.length > 0 && user.role == "ROLE_CLIENT"){
         return true;
       }else{
           this.router.navigateByUrl('');

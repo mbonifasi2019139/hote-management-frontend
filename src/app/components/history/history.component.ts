@@ -26,7 +26,7 @@ export class HistoryComponent implements OnInit {
     private restHotel: RestHotelService) { 
       this.user = new User("","","","","","","",[],[],[]);
       this.reservation = new Reservation("","","","",null,null,null,null,[],[]);
-      this.hotel = new Hotel("", "", "", "", null, "", "", [], []);
+      this.hotel = new Hotel("", null, "", "", null, "", "", [], []);
       this.room = new Room("","",null,null,null,"");
     }
 

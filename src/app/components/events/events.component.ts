@@ -25,7 +25,7 @@ export class EventsComponent implements OnInit {
   constructor(private restEvent: RestEventService, private datepipe: DatePipe) { 
     this.room = new Room("","",null,null,null,"");
     this.event = new Event("","","",null);
-    this.hotel = new Hotel("", "", "", "", null, "", "", [], []);
+    this.hotel = new Hotel("", null, "", "", null, "", "", [], []);
   }
 
   ngOnInit(): void {
@@ -35,23 +35,29 @@ export class EventsComponent implements OnInit {
     console.log(this.hotel);
     this.hotel = JSON.parse(localStorage.getItem("currentHotel")) || JSON.parse(localStorage.getItem('hotel'));
 
-    this.hotel.events.forEach( event => {
-      this.events.push(event);
-    })
+    if(this.role == "ROLE_CLIENT"){
+      this.hotel.events.forEach( event => {
+        this.events.push(event);
+      })
+    }
 
     console.log(this.events);
 
-    this.restEvent.getEventsByHotelAdmin().subscribe((resp:any)=>{
-       resp.events.forEach(element => {
-        this.events.push(element);
-      });
-    })
+    if(this.role != "ROLE_CLIENT"){
+      this.restEvent.getEventsByHotelAdmin().subscribe((resp:any)=>{
+        resp.events.forEach(element => {
+         this.events.push(element);
+       });
+     })
+    }
 
-    this.restEvent.getRoomsEvent().subscribe((resp:any)=>{
-      resp.rooms.forEach(element => {
-        this.roomsEvent.push(element);
-      });
-    })
+    if(this.role != "ROLE_CLIENT"){
+      this.restEvent.getRoomsEvent().subscribe((resp:any)=>{
+        resp.rooms.forEach(element => {
+          this.roomsEvent.push(element);
+        });
+      })
+    }
   }
 
   onSubmit(saveEventByAdminForm){

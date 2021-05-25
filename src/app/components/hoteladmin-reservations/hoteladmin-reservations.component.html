@@ -15,7 +15,7 @@
                     <p class="card-text"><strong>Fin: </strong> {{ showDateInFormat(reservation.end_date) }}</p>
                     <p class="card-text" *ngIf="reservation.status == true"><strong>Estado: </strong>En proceso</p>
                     <p class="card-text" *ngIf="reservation.status == false"><strong>Estado: </strong>Finalizada</p>
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" (click)="setReservationInfo(reservation)">Detalle Reservación</a>
+                    <a class="btn btn-primary mb-2" data-toggle="modal" data-target="#staticBackdrop" (click)="setReservationInfo(reservation)">Detalle Reservación</a>
                     <a class="btn btn-success" data-toggle="modal" data-target="#staticBackdropFacturar" (click)="setReservationInfo(reservation)">Facturar</a>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                 <p *ngIf="reservation.status == false">Estado: <strong> Finalizada </strong> </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" (click)="createInvoice()">Facturar</button>
+                <button type="button" class="btn btn-success mb-2" (click)="createInvoice()">Facturar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>

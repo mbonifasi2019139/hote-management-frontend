@@ -40,7 +40,7 @@ export class HomeHotelsComponent implements OnInit, DoCheck {
     private restReservation: RestReservationService, private restHotelService: RestHotelServiceService,
     private restRoom: RestRoomService) { 
     this.user = new User("", "", "", "", "", "", "", [], [], []);
-    this.hotel = new Hotel("", "", "", "", 0, "", "", [], []);
+    this.hotel = new Hotel("", null, "", "", 0, "", "", [], []);
     this.room = new Room('','',null,null,null,'');
     this.reservation = new Reservation('','','','',null,null,null,null,[],[]);
   }
@@ -73,7 +73,7 @@ export class HomeHotelsComponent implements OnInit, DoCheck {
     });
 
     this.role = this.restUser.getRole();
-    this.hotelSelected = new Hotel('','','','',null,'','',[],[]);
+    this.hotelSelected = new Hotel('',null,'','',null,'','',[],[]);
   }
 
   ngDoCheck(){

@@ -70,7 +70,7 @@ const routes: Routes = [
     path: "invoices", component: InvoiceComponent
   },
   {
-    path: "history", component: HistoryComponent
+    path: "history",  canActivate: [UserGuardGuard], component: HistoryComponent
   },
   {
     path: "**", component: HomeAdminComponent

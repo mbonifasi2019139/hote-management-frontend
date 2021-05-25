@@ -20,7 +20,7 @@ export class RoomsComponent implements OnInit {
   selectRoom = ["Habitación Dormitorio", "Salón de evento"];
 
   constructor(private restRoom: RestRoomService, private datepipe: DatePipe, private restHotel: RestHotelService, private router: Router) { 
-    this.hotel = new Hotel("", "", "", "", null, "", "", [], []);
+    this.hotel = new Hotel("", null, "", "", null, "", "", [], []);
     this.room = new Room("","",null,null,null,"");
   }
 
