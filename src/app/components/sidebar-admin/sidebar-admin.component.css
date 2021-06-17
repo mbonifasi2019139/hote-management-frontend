@@ -40,3 +40,8 @@ a {
 a:hover {
     border-bottom: 1px solid white;
 }
+
+.bg-custom {
+    background: rgb(41, 242, 170);
+    background: linear-gradient(0deg, rgba(41, 242, 170, 1) 0%, rgba(77, 81, 150, 0.9738095921962535) 100%);
+}

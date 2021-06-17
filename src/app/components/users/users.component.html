@@ -13,7 +13,7 @@
             </form>
         </div>
         <div class="overflow-auto maxheight" *ngIf="users.length != 0; else noData">
-            <div class="card users shadow-sm" *ngFor="let user of users">
+            <div class="card users shadow-sm bg-light" *ngFor="let user of users">
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
                     <h5 class="card-title font-weight-bolder"> {{ (username == user.username) ? "Tú" : user.username}}</h5>
